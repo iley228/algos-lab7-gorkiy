@@ -54,21 +54,17 @@ user_input = input("Введите слова через запятую: ")
 words_list = [word.strip() for word in user_input.split(",")]
 
 print(check_palindromes(words_list))
-
-def isPalindromString(word):
-    word = word.lower().replace(" ", "")
+def is_palindrome(word):
     return word == word[::-1]
 
-def find_palindromes(text):
-    words = text.split()
-    palindromes = set()
-    
-    for word in words:
-        word = ''.join(char for char in word if char.isalnum())
-        if isPalindromString(word) and word:
-            palindromes.add(word.lower())
-
-    return list(palindromes)
+def find_palindromes_bruteforce(input_word):
+    palindromes = []
+    n = len(input_word)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if is_palindrome(input_word[i:j+1]):
+                palindromes.append(input_word[i:j+1])
+    return palindromes
 
 user_input = input("Введите текст: ")
 
